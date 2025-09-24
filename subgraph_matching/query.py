@@ -41,7 +41,6 @@ def exact_subgraph_check(query, target):
 
 
 def main():
-    # Build parser with defaults from repo
     parser = argparse.ArgumentParser(description="Query subgraph in target graph")
     utils.parse_optimizer(parser)
     parse_encoder(parser)
