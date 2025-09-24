@@ -18,3 +18,19 @@ def load_graph(path, default_size=8, p=0.25):
             return pickle.load(f)
     return nx.gnp_random_graph(default_size, p)
 
+
+def visualize(target, mat, out="query_match.png"):
+    """Highlight matched nodes in the target graph."""
+    pos = nx.spring_layout(target, seed=42)
+    nx.draw(target, pos, with_labels=True,
+            node_color="lightblue", edge_color="gray")
+    # highlight nodes with highest scores per query node
+    mapping = np.argmax(mat, axis=1)
+    nx.draw_networkx_nodes(target, pos,
+                           nodelist=mapping.tolist(),
+                           node_color="orange")
+    plt.title("Target graph: matched nodes in orange")
+    plt.savefig(out)
+    print(f"Saved visualization to {out}")
+from networkx.algorithms import isomorphism
+
