@@ -34,3 +34,9 @@ def visualize(target, mat, out="query_match.png"):
     print(f"Saved visualization to {out}")
 from networkx.algorithms import isomorphism
 
+def exact_subgraph_check(query, target):
+    """Exact check using NetworkX VF2 isomorphism."""
+    GM = isomorphism.GraphMatcher(target, query)
+    return GM.subgraph_is_isomorphic()
+
+
